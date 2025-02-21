@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my first todo-app</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+</head>
+<body>
+    <!-- Header -->
+    <header >
+        <h1 class="title">to-do list</h1>
+        <button id="add-new-task" class="btn-new-task">+ new task</button>
+    </header>
+    <!-- Task section -->
+    <section id="task-section">
+
+        <div class="card-wrapper">
+            <div class="task-header">
+                <div class="task-name-status">
+                    <h2 class="task-name title">Task</h2>
+                    <div class="task-status">
+                        <i id="is-urgent-icon" class="fi fi-ss-bullet status"></i>
+                        <p id="is-urgent-text" class="status">urgent</p>
+                    </div>
+                </div>
+                <div class="task-manage">
+                    <i id="edit" class="fi fi-rr-pencil"></i>
+                    <i id="delete" class="fi fi-rr-trash"></i>
+                </div>
+            </div>
+            <p class="task-date">16.01.2002</p>
+            <p class="task-desc"></p>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="task-header">
+                <div class="task-name-status">
+                    <h2 class="task-name title">Task</h2>
+                    <div class="task-status">
+                        <i id="is-urgent-icon" class="fi fi-ss-bullet"></i>
+                        <p id="is-urgent-text">non-urgent</p>
+                    </div>
+                </div>
+                <div class="task-manage">
+                    <i id="edit" class="fi fi-rr-pencil"></i>
+                    <i id="delete" class="fi fi-rr-trash"></i>
+                </div>
+            </div>
+            <p class="task-date">16.01.2002</p>
+            <p class="task-desc"></p>
+        </div>
+
+    </section>
+    <!-- Modal window -->
+    <div class="modal" id="modal">
+        <div class="card-wrapper">
+            <input id='modal-task-name' class="title" type="text" autofocus placeholder="task name">
+            <input type="date">
+            <select>
+                <option value="urgent">urgent</option>
+                <option value="non-urgent">non-urgent</option>
+            </select>
+            <textarea placeholder="description" rows="5" maxlength="250"></textarea>
+            <button id="create" class="btn-new-task">create</button>
+        </div>
+    </div>
+    <!-- Script -->
+    <script src="index.js"></script>
+</body>
+</html>
