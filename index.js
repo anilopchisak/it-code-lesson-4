@@ -15,6 +15,7 @@ let addNewTaskBtn = doc.getElementById('add-new-task');
 
 let data = JSON.parse(localStorage.getItem("data")) || [];
 const idList = {}; // id list to check the collisions
+let currentEditTask = null; 
 
 // MODAL
 // modal open
@@ -30,6 +31,7 @@ addNewTaskBtn.addEventListener('click', () => {
 // modal close
 const closeModal = () => {
     modal.style.display = 'none';
+    setForm();
 }
 
 modalContent.addEventListener('click', (event) => {
@@ -38,15 +40,17 @@ modalContent.addEventListener('click', (event) => {
 
 modal.addEventListener('click', () => {
     closeModal();
-    setForm();
 });
 
 // GENERAL
 const getElemById = (id) => doc.getElementById(id);
 const getObject = id => data.find(obj => obj.id === id); // get object from data array
 const getDataIndex = id => data.findIndex(obj => obj.id === id); // get index of object in data array
-const isObjectNull = task => Object.keys(task).length === 0;
-const updateLocalStorage = () => localStorage.setItem("data", JSON.stringify(data));
+const isObjectNull = task => !task || typeof task !== 'object' || Object.keys(task).length === 0;
+const updateLocalStorage = () => {
+    localStorage.setItem("data", JSON.stringify(data));
+    console.log(data);
+};
 const throwError = (error) => {
     throw new Error(error)
 };
@@ -55,12 +59,12 @@ const throwError = (error) => {
 const generateUniqueId = () => {
     const timestamp = Date.now() % 10000;
     const random = Math.floor(Math.random() * 10000);
-    const uniqueId = `${timestamp}-${random}`;
-    return uniqueId;
+    const uniqueId = timestamp - random;
+    return Math.abs(uniqueId);
 }
 const getUniqueId = () => {
     let id = generateUniqueId();
-    while (Object.hasOwn(idList, id)) {
+    while (Object.hasOwn(idList, id) && idList[id]) {
         id = generateUniqueId();
     }
     idList[id] = true;
@@ -111,16 +115,28 @@ const taskLayout = (task) => {
     return div;
 }
 
+// add task to html
 const addTask = (task) => {
     const layout = taskLayout(task);
-    taskSection.append(layout);
+    taskSection.prepend(layout);
 }
 
+// update data and update localStorage
 const acceptData = () => {
-    const newTask = setData(newTask);
+    const newTask = setData();
     data.push(newTask);
     updateLocalStorage();
     return newTask;
+}
+
+const updateData = () => {
+    const updatedTask = setData(currentEditTask);
+    deleteTaskHandler(updatedTask);
+    data.push(updatedTask);
+    updateLocalStorage();
+    addTask(updatedTask);
+    closeModal();
+    currentEditTask = null;
 }
 
 const createTask = () => {
@@ -134,7 +150,8 @@ createBtn.addEventListener('click', () => {
         alert('fill the task name!');
     }
     else {
-        createTask();
+        if (currentEditTask !== null) updateData();
+        else createTask();
     }
 })
 
@@ -145,9 +162,10 @@ const editTaskHandler = (task) => {
 
 const editTask = (id) => {
     const task = getObject(id);
+    currentEditTask = task;
     setForm(task);
     openModal();
-    editTaskHandler(task);
+    // editTaskHandler(task);
 }
 
 // delete task
@@ -156,6 +174,7 @@ const deleteTaskHandler = (task) => {
     data.splice(taskIndex, 1);
     updateLocalStorage();
     getElemById(`task-${task.id}`).remove();
+    idList[task.id] = false;
 }
 
 const deleteTask = (id) => {
@@ -169,8 +188,8 @@ const deleteTask = (id) => {
 
 // load all the tasks in storage
 const loadLocalStorage = () => {
-    data.forEach((task, index) => {
-        if (task) addTask(index);
+    data.forEach((task) => {
+        if (task) addTask(task);
     });
 }
 
