@@ -16,54 +16,32 @@
     </header>
     <!-- Task section -->
     <section id="task-section">
-
-        <div class="card-wrapper">
-            <div class="task-header">
-                <div class="task-name-status">
-                    <h2 class="task-name title">Task</h2>
-                    <div class="task-status">
-                        <i id="is-urgent-icon" class="fi fi-ss-bullet status"></i>
-                        <p id="is-urgent-text" class="status">urgent</p>
-                    </div>
+        <!-- <div class="card-wrapper">
+            <div class="task-manage-status">
+                <div class="task-status ${taskData.status === 'urgent' ? 'red' : 'green'}">
+                    <i id="is-urgent-icon" class="fi fi-ss-bullet"></i>
+                    <p id="is-urgent-text">${taskData.status}</p>
                 </div>
                 <div class="task-manage">
-                    <i id="edit" class="fi fi-rr-pencil"></i>
-                    <i id="delete" class="fi fi-rr-trash"></i>
+                    <i onClick='editTask(${index})' id="edit" class="fi fi-rr-pencil"></i>
+                    <i onClick='deleteTask(${index})' id="delete" class="fi fi-rr-trash"></i>
                 </div>
             </div>
-            <p class="task-date">16.01.2002</p>
-            <p class="task-desc"></p>
-        </div>
-
-        <div class="card-wrapper">
-            <div class="task-header">
-                <div class="task-name-status">
-                    <h2 class="task-name title">Task</h2>
-                    <div class="task-status">
-                        <i id="is-urgent-icon" class="fi fi-ss-bullet"></i>
-                        <p id="is-urgent-text">non-urgent</p>
-                    </div>
-                </div>
-                <div class="task-manage">
-                    <i id="edit" class="fi fi-rr-pencil"></i>
-                    <i id="delete" class="fi fi-rr-trash"></i>
-                </div>
-            </div>
-            <p class="task-date">16.01.2002</p>
-            <p class="task-desc"></p>
-        </div>
-
+            <h2 class="task-name title">${taskData.name}</h2>
+            <p class="task-date">${taskData.date}</p>
+            <p class="task-desc">${taskData.description}</p>
+        </div> -->
     </section>
     <!-- Modal window -->
     <div class="modal" id="modal">
-        <div class="card-wrapper">
-            <input id='modal-task-name' class="title" type="text" autofocus placeholder="task name">
-            <input type="date">
-            <select>
-                <option value="urgent">urgent</option>
-                <option value="non-urgent">non-urgent</option>
+        <div id="modal-content" class="card-wrapper">
+            <input id='modal-task-name' class="title" type="text" placeholder="task name" maxlength="100">
+            <input id="date-input" type="date">
+            <select id="select-status">
+                <option value='non-urgent'>non-urgent</option>
+                <option value='urgent'>urgent</option>
             </select>
-            <textarea placeholder="description" rows="5" maxlength="250"></textarea>
+            <textarea id='modal-task-desc' placeholder="description" rows="5" maxlength="250"></textarea>
             <button id="create" class="btn-new-task">create</button>
         </div>
     </div>

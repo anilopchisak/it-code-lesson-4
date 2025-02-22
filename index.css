@@ -39,23 +39,27 @@ header h1 {
 
 /* TASK SECTION */
 #task-section {
+    padding: 0 10px 75px 10px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 505px);
+    grid-template-columns: repeat(auto-fill, minmax(auto, 505px));
     gap: 30px;
     justify-content: center;
 }
 
-.task-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-.task-name-status {
+.task-manage-status {
     display: flex;
     align-items: baseline;
+    justify-content: space-between;
 }
-.task-name {
-    margin-right: 20px;
+
+.task-manage > .fi {
+    padding: 2px 7px;
+    cursor: pointer;
+}
+
+.task-name, .task-desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .task-date {
@@ -68,6 +72,13 @@ header h1 {
     display: flex;
     align-items: flex-start;
     line-height: 18px;
+}
+
+.red {
+    color: var(--red);
+}
+
+.green {
     color: var(--green);
 }
 
@@ -82,33 +93,10 @@ header h1 {
     z-index: 1000;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 70%, rgba(255, 255, 255, 0.3) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 40%, rgba(255, 255, 255, 0.5) 100%);
     backdrop-filter: blur(5px);
     /* transition: background 1s ease-in-out; */
     cursor: pointer;
-}
-
-.title {
-    color: var(--black);
-    font-weight: 800;
-}
-
-.btn-new-task {
-    font: 800 18px/24px "Inter", sans-serif;
-    color: var(--light-gray);
-    border: none;
-    border-bottom: 1px solid var(--light-gray);
-    background-color: transparent;
-    cursor: pointer;
-}
-
-.card-wrapper {
-    padding: 42px;
-    line-height: 42px;
-    background-color: var(--white);
-    border: 1px solid var(--light-gray);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(44, 44, 44, 0.5);
 }
 
 input, select, textarea {
@@ -140,3 +128,29 @@ textarea::placeholder {
     margin-bottom: 24px;
     font-size: 42px;
 }
+
+/* GENERAL */
+
+.title {
+    color: var(--black);
+    font-weight: 800;
+}
+
+.btn-new-task {
+    font: 800 18px/24px "Inter", sans-serif;
+    color: var(--light-gray);
+    border: none;
+    border-bottom: 1px solid var(--light-gray);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.card-wrapper {
+    padding: 42px;
+    line-height: 42px;
+    background-color: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(44, 44, 44, 0.5);
+}
+
