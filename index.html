@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my first todo-app</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+</head>
+<body>
+    <!-- Header -->
+    <header >
+        <h1 class="title">to-do list</h1>
+        <button id="add-new-task" class="btn-new-task">+ new task</button>
+    </header>
+    <!-- Task section -->
+    <section id="task-section"></section>
+    <!-- Modal window -->
+    <div class="modal" id="modal">
+        <div id="modal-content" class="card-wrapper">
+            <input id='modal-task-name' class="title" type="text" placeholder="task name" maxlength="100">
+            <input id="date-input" type="date">
+            <select id="select-status">
+                <option value='non-urgent'>non-urgent</option>
+                <option value='urgent'>urgent</option>
+            </select>
+            <textarea id='modal-task-desc' placeholder="description" rows="5" maxlength="250"></textarea>
+            <button id="create" class="btn-new-task">create</button>
+        </div>
+    </div>
+    <!-- Script -->
+    <script src="index.js"></script>
+</body>
+</html>
