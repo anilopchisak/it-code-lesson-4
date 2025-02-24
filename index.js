@@ -49,7 +49,6 @@ const getDataIndex = id => data.findIndex(obj => obj.id === id); // get index of
 const isObjectNull = task => !task || typeof task !== 'object' || Object.keys(task).length === 0;
 const updateLocalStorage = () => {
     localStorage.setItem("data", JSON.stringify(data));
-    console.log(data);
 };
 const throwError = (error) => {
     throw new Error(error)
@@ -146,7 +145,7 @@ const createTask = () => {
 }
 
 createBtn.addEventListener('click', () => {
-    if (taskNameInput.value.trim() === '') {
+    if (!taskNameInput.value.trim()) {
         alert('fill the task name!');
     }
     else {
@@ -155,17 +154,11 @@ createBtn.addEventListener('click', () => {
     }
 })
 
-// edit task
-const editTaskHandler = (task) => {
-    
-}
-
 const editTask = (id) => {
     const task = getObject(id);
     currentEditTask = task;
     setForm(task);
     openModal();
-    // editTaskHandler(task);
 }
 
 // delete task
