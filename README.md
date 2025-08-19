@@ -1,7 +1,7 @@
 # Микро веб-приложение To-Do List 
 Выполнено в рамках стажировки по фронтенд-разработке в компании IT Code.
 
-## Ссылка на GitHub Pages: https://anilopchisak.github.io/it-code-lesson-4/
+[Ссылка на GitHub Pages](https://anilopchisak.github.io/it-code-lesson-4/)
 
 ### Стек технологий:
 - JS
